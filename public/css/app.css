@@ -1,0 +1,28 @@
+.login-container {
+	max-width:26rem;
+	margin:auto;
+	padding:2rem;
+}
+.page-title {
+	background:#eee;
+	padding:2rem 0;
+	border-top:1px solid #e6e6e6;
+	border-bottom:1px solid #e6e6e6;
+	margin-bottom:2rem;
+}
+.page-title h5 {
+	margin-bottom:0
+}
+.app-stage {
+	padding-bottom:4rem;
+}
+.panel {
+	border:1px solid #e6e6e6;
+	padding:1.5rem;
+}
+.link-return {
+	text-decoration:none;
+}
+.link-return::before {
+	content:"‹ ";
+}
