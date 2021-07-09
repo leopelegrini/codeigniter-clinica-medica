@@ -47,11 +47,11 @@ class Usuarios extends BaseController
 
 			$model->insert($data);
 
-			return redirect()->to('/usuarios/cadastrar');
+			return redirect()->to('/usuarios');
 		}
 
 		$data['validation'] = $this->validator;
 
-		return redirect()->to('/usuarios');
+		echo view('usuarios/create', $data);
 	}
 }

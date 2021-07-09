@@ -30,8 +30,8 @@
                         <td><?= $usuario['usuario'] ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="#" class="btn btn-light btn-sm">Editar</a>
-                                <a href="#" class="btn btn-light btn-sm ml-2">Excluir</a>
+                                <a href="/usuarios/editar" class="btn btn-light btn-sm">Editar</a>
+                                <a href="/usuarios/excluir" class="btn btn-light btn-sm ml-2">Excluir</a>
                             </div>
                         </td>
                     </tr>

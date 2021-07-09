@@ -2,10 +2,14 @@
 
 namespace App\Controllers;
 
-class Especialidade extends BaseController
+class Especialidades extends BaseController
 {
 	public function index()
 	{
 		return view('home');
+	}
+
+	public function cadastrar()
+	{
 	}
 }
