@@ -22,7 +22,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -30,10 +30,44 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-//$routes->get('/', 'Home::index');
-$routes->get('/', 'Home::index', ['filter' => 'auth']);
+
+$routes->get('/', 'HomeController::index', ['filter' => 'auth']);
+$routes->get('/home', 'HomeController::index', ['filter' => 'auth']);
+
+$routes->get('/login', 'LoginController::index');
+$routes->post('/auth', 'LoginController::auth');
+$routes->get('/logout', 'LoginController::logout');
+
+$routes->get('/criar-conta', 'RegisterController::index');
+$routes->post('/criar-conta', 'RegisterController::store');
+
+$routes->get('/usuarios', 'UsuarioController::index', ['filter' => 'auth']);
+$routes->get('/usuarios/cadastrar', 'UsuarioController::create', ['filter' => 'auth']);
+$routes->post('/usuarios/salvar', 'UsuarioController::store', ['filter' => 'auth']);
+$routes->get('/usuarios/(:num)/editar', 'UsuarioController::edit/$1', ['filter' => 'auth']);
+$routes->post('/usuarios/(:num)/atualizar', 'UsuarioController::update/$1', ['filter' => 'auth']);
+$routes->get('/usuarios/(:num)/excluir', 'UsuarioController::destroy/$1', ['filter' => 'auth']);
+
+$routes->get('/especialidades', 'EspecialidadeController::index', ['filter' => 'auth']);
+$routes->get('/especialidades/cadastrar', 'EspecialidadeController::create', ['filter' => 'auth']);
+$routes->post('/especialidades/salvar', 'EspecialidadeController::store', ['filter' => 'auth']);
+$routes->get('/especialidades/(:num)/editar', 'EspecialidadeController::edit/$1', ['filter' => 'auth']);
+$routes->post('/especialidades/(:num)/atualizar', 'EspecialidadeController::update/$1', ['filter' => 'auth']);
+$routes->get('/especialidades/(:num)/excluir', 'EspecialidadeController::destroy/$1', ['filter' => 'auth']);
+
+$routes->get('/medicos', 'MedicoController::index', ['filter' => 'auth']);
+$routes->get('/medicos/cadastrar', 'MedicoController::create', ['filter' => 'auth']);
+$routes->post('/medicos/salvar', 'MedicoController::store', ['filter' => 'auth']);
+$routes->get('/medicos/(:num)/editar', 'MedicoController::edit/$1', ['filter' => 'auth']);
+$routes->post('/medicos/(:num)/atualizar', 'MedicoController::update/$1', ['filter' => 'auth']);
+$routes->get('/medicos/(:num)/excluir', 'MedicoController::destroy/$1', ['filter' => 'auth']);
+
+$routes->get('/pacientes', 'PacienteController::index', ['filter' => 'auth']);
+$routes->get('/pacientes/cadastrar', 'PacienteController::create', ['filter' => 'auth']);
+$routes->post('/pacientes/salvar', 'PacienteController::store', ['filter' => 'auth']);
+$routes->get('/pacientes/(:num)/editar', 'PacienteController::edit/$1', ['filter' => 'auth']);
+$routes->post('/pacientes/(:num)/atualizar', 'PacienteController::update/$1', ['filter' => 'auth']);
+$routes->get('/pacientes/(:num)/excluir', 'PacienteController::destroy/$1', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

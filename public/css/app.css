@@ -19,10 +19,16 @@
 .panel {
 	border:1px solid #e6e6e6;
 	padding:1.5rem;
+	background:#fff;
 }
 .link-return {
 	text-decoration:none;
 }
 .link-return::before {
 	content:"‹ ";
+}
+.text-invalid {
+	margin-top:0.2rem;
+	color:#dc3545;
+	font-size:0.875rem;
 }

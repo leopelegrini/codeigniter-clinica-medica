@@ -26,7 +26,7 @@
 				<li><a href="/pacientes" class="nav-link px-2">Pacientes</a></li>
 				<li><a href="/agenda" class="nav-link px-2">Consultas</a></li>
 				<li style="margin-left:1rem;">
-					<a href="/login/logout" class="btn btn-outline-primary me-2">Sair</a>
+					<a href="/logout" class="btn btn-outline-primary me-2">Sair</a>
 				</li>
 			</ul>
 		</div>
@@ -36,6 +36,9 @@
 <?= $this->renderSection('content') ?>
 
 <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/accounting.min.js"></script>
+<script type="text/javascript" src="/js/currency.js"></script>
+<script type="text/javascript" src="/js/app.js"></script>
 
 <?= $this->renderSection('scripts') ?>
 

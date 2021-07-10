@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Cadastrar extends BaseController
+class RegisterController extends BaseController
 {
 	public function index()
 	{
@@ -10,10 +10,10 @@ class Cadastrar extends BaseController
 
 		$data = [];
 
-		echo view('cadastrar', $data);
+		echo view('auth/register', $data);
 	}
 
-	public function salvar()
+	public function store()
 	{
 		helper(['form']);
 
@@ -34,11 +34,13 @@ class Cadastrar extends BaseController
 
 			$model->insert($data);
 
+			session()->setFlashdata('message', 'Conta cadastrada com sucesso');
+
 			return redirect()->to('/login');
 		}
 
 		$data['validation'] = $this->validator;
 
-		echo view('cadastrar', $data);
+		echo view('auth/register', $data);
 	}
 }

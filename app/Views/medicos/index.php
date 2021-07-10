@@ -4,7 +4,7 @@
 
 	<div class="page-title">
 		<div class="container ms-auto">
-			<h5>Especialidades</h5>
+			<h5>Médicos</h5>
 		</div>
 	</div>
 
@@ -16,22 +16,24 @@
             <?php endif;?>
 
             <div class="mb-3">
-                <a href="/especialidades/cadastrar" class="btn btn-primary">
+                <a href="/medicos/cadastrar" class="btn btn-primary">
                     Cadastrar
                 </a>
             </div>
 
-            <?php if(count($especialidades)): ?>
+            <?php if(count($medicos)): ?>
             <table class="table table-bordered">
                 <thead>
                     <tr class="table-secondary">
                         <th>Nome</th>
-                        <th class="text-end">Valor</th>
+                        <th>Telefone</th>
+                        <th>CRM</th>
+                        <th>Especialidade</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($especialidades as $esp):?>
+                    <?php foreach ($medicos as $esp):?>
                     <tr>
                         <td><?= $esp['nome'] ?></td>
                         <td class="text-end"><?= dollarToReal($esp['valor']) ?></td>
@@ -50,7 +52,7 @@
                 </tbody>
             </table>
             <?php else: ?>
-            <p>Nenhuma especialidade cadastrada.</p>
+            <p>Nenhum médico cadastrado.</p>
             <?php endif; ?>
 
 		</div>

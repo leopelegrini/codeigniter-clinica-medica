@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Medico extends BaseController
+class PacienteController extends BaseController
 {
 	public function index()
 	{

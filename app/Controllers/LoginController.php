@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
-class Login extends BaseController
+class LoginController extends BaseController
 {
 	public function index()
 	{
 		helper(['form']);
-		echo view('login');
+
+		echo view('auth/login');
 	}
 
 	public function auth()
@@ -41,13 +42,13 @@ class Login extends BaseController
 				return redirect()->to('/home');
 			}
 			else {
-				$session->setFlashdata('msg', 'Credenciais inválidas');
+				$session->setFlashdata('message', 'Credenciais inválidas');
 				return redirect()->to('/login');
 			}
 		}
 		else {
 
-			$session->setFlashdata('msg', 'Credenciais inválidas');
+			$session->setFlashdata('message', 'Credenciais inválidas');
 
 			return redirect()->to('/login');
 		}

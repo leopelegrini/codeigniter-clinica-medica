@@ -20,7 +20,7 @@
                     <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
                 <?php endif;?>
 
-                <form action="/cadastrar/salvar" method="post">
+                <form action="/criar-conta" method="post">
                     <div class="mb-3">
                         <label for="3" class="form-label">Usuário</label>
                         <input type="text" name="usuario" class="form-control" id="usuario" value="<?= set_value('usuario') ?>">

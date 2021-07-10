@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Agenda extends BaseController
+class ConsultaController extends BaseController
 {
 	public function index()
 	{

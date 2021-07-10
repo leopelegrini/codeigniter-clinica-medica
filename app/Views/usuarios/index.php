@@ -34,10 +34,10 @@
                         <td><?= $usuario['usuario'] ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/usuarios/editar/'.$usuario['id']);?>" class="text-decoration-none me-2">
+                                <a href="<?php echo base_url('/usuarios/'. $usuario['id'] .'/editar');?>" class="text-decoration-none me-2">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/usuarios/excluir/'.$usuario['id']);?>" class="text-decoration-none">
+                                <a href="<?php echo base_url('/usuarios/'. $usuario['id'] .'/excluir');?>" class="text-decoration-none">
                                     Excluir
                                 </a>
                             </div>
