@@ -4,7 +4,7 @@
 
 	<div class="page-title">
 		<div class="container ms-auto">
-			<h5>Usuários</h5>
+			<h5>Especialidades</h5>
 		</div>
 	</div>
 
@@ -16,7 +16,7 @@
             <?php endif;?>
 
             <div class="mb-3">
-                <a href="/usuarios/cadastrar" class="btn btn-primary">
+                <a href="/especialidades/cadastrar" class="btn btn-primary">
                     Cadastrar
                 </a>
             </div>
@@ -24,20 +24,22 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="table-secondary">
-                        <th>Login</th>
+                        <th>Nome</th>
+                        <th>Valor</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($usuarios as $usuario):?>
+                    <?php foreach ($especialidades as $esp):?>
                     <tr>
-                        <td><?= $usuario['usuario'] ?></td>
+                        <td><?= $esp['nome'] ?></td>
+                        <td><?= $esp['valor'] ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/usuarios/editar/'.$usuario['id']);?>" class="text-decoration-none me-2">
+                                <a href="<?php echo base_url('/especialidades/editar/'.$esp['id']);?>" class="btn btn-light btn-sm">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/usuarios/excluir/'.$usuario['id']);?>" class="text-decoration-none">
+                                <a href="<?php echo base_url('/especialidades/excluir/'.$esp['id']);?>" class="btn btn-light btn-sm">
                                     Excluir
                                 </a>
                             </div>
