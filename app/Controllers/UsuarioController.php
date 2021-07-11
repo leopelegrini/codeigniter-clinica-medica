@@ -32,7 +32,7 @@ class UsuarioController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'usuario' => 'required|min_length[3]|max_length[20]',
+			'usuario' => 'required|min_length[3]|max_length[20]|is_unique[login.usuario]',
 			'senha' => 'required|min_length[4]|max_length[200]',
 			'confirmar_senha'  => 'matches[senha]'
 		];
@@ -69,7 +69,7 @@ class UsuarioController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'usuario' => 'required|min_length[3]|max_length[20]',
+			'usuario' => 'required|min_length[3]|max_length[20]|is_unique[login.usuario,id,{id}]',
 			'senha' => 'required|min_length[4]|max_length[200]',
 			'confirmar_senha'  => 'matches[senha]'
 		];

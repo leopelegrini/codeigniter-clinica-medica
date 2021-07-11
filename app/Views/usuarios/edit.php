@@ -23,6 +23,9 @@
 
             <div class="panel">
                 <form action="/usuarios/<?php echo $usuario['id'] ?>/atualizar" method="post">
+
+                    <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+
                     <div class="form-row">
                         <div class="col-lg-4">
 
