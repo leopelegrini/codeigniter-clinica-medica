@@ -32,26 +32,22 @@ class EspecialidadeController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'nome' => 'required|min_length[3]|max_length[20]',
+			'nome' => 'required|min_length[3]|max_length[50]|is_unique[especialidade.nome]',
 			'valor' => 'required|regex_match[/^\d{1,3}(.\d{3})*(\,\d{2})?$/]'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('especialidades/create', [
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->insert([
-				'nome' => $this->request->getVar('nome'),
-				'valor' => realToDollar($this->request->getVar('valor'))
-			]);
+		$this->model->insert([
+			'nome' => $this->request->getVar('nome'),
+			'valor' => realToDollar($this->request->getVar('valor'))
+		]);
 
-			session()->setFlashdata('message', 'Especialidade cadastrada');
+		session()->setFlashdata('message', 'Especialidade cadastrada');
 
-			return redirect()->to('/especialidades');
-		}
+		return redirect()->to('/especialidades');
 	}
 
 	public function edit($id)
@@ -68,27 +64,22 @@ class EspecialidadeController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'nome' => 'required|min_length[3]|max_length[20]',
+			'nome' => 'required|min_length[3]|max_length[50]|is_unique[especialidade.nome,id,{id}]',
 			'valor' => 'required|regex_match[/^\d{1,3}(.\d{3})*(\,\d{2})?$/]'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('especialidades/edit', [
-				'especialidade' => $this->model->where('id', $id)->first(),
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->update($id, [
-				'nome' => $this->request->getVar('nome'),
-				'valor' => $this->request->getVar('valor')
-			]);
+		$this->model->update($id, [
+			'nome' => $this->request->getVar('nome'),
+			'valor' => $this->request->getVar('valor')
+		]);
 
-			session()->setFlashdata('message', 'Especialidade atualizada');
+		session()->setFlashdata('message', 'Especialidade atualizada');
 
-			return redirect()->to('/especialidades');
-		}
+		return redirect()->to('/especialidades');
 	}
 
 	public function destroy($id)

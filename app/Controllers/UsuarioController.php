@@ -32,27 +32,23 @@ class UsuarioController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'usuario' => 'required|min_length[3]|max_length[20]|is_unique[login.usuario]',
+			'usuario' => 'required|min_length[3]|max_length[50]|is_unique[login.usuario]',
 			'senha' => 'required|min_length[4]|max_length[200]',
 			'confirmar_senha'  => 'matches[senha]'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('usuarios/create', [
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->insert([
-				'usuario' => $this->request->getVar('usuario'),
-				'senha' => password_hash($this->request->getVar('senha'), PASSWORD_DEFAULT)
-			]);
+		$this->model->insert([
+			'usuario' => $this->request->getVar('usuario'),
+			'senha' => password_hash($this->request->getVar('senha'), PASSWORD_DEFAULT)
+		]);
 
-			session()->setFlashdata('message', 'Usuário cadastrado');
+		session()->setFlashdata('message', 'Usuário cadastrado');
 
-			return redirect()->to('/usuarios');
-		}
+		return redirect()->to('/usuarios');
 	}
 
 	public function edit($id)
@@ -69,28 +65,23 @@ class UsuarioController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'usuario' => 'required|min_length[3]|max_length[20]|is_unique[login.usuario,id,{id}]',
+			'usuario' => 'required|min_length[3]|max_length[50]|is_unique[login.usuario,id,{id}]',
 			'senha' => 'required|min_length[4]|max_length[200]',
 			'confirmar_senha'  => 'matches[senha]'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('usuarios/edit', [
-				'usuario' => $this->model->where('id', $id)->first(),
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->update($id, [
-				'usuario' => $this->request->getVar('usuario'),
-				'senha' => password_hash($this->request->getVar('senha'), PASSWORD_DEFAULT)
-			]);
+		$this->model->update($id, [
+			'usuario' => $this->request->getVar('usuario'),
+			'senha' => password_hash($this->request->getVar('senha'), PASSWORD_DEFAULT)
+		]);
 
-			session()->setFlashdata('message', 'Usuário atualizado');
+		session()->setFlashdata('message', 'Usuário atualizado');
 
-			return redirect()->to('/usuarios');
-		}
+		return redirect()->to('/usuarios');
 	}
 
 	public function destroy($id)

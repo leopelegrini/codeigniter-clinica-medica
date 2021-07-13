@@ -6,7 +6,7 @@
 
 	<div class="page-title">
         <div class="container ms-auto">
-		    <h5>Cadastrar médico</h5>
+		    <h5>Cadastrar paciente</h5>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="container ms-auto">
 
             <div class="mb-3">
-                <a href="/medicos" class="link-secondary link-return">
+                <a href="/pacientes" class="link-secondary link-return">
                     Voltar
                 </a>
             </div>
@@ -24,7 +24,7 @@
             <?php endif;?>
 
             <div class="panel">
-                <form action="/medicos/salvar" method="post">
+                <form action="/pacientes/salvar" method="post">
                     <div class="form-row">
                         <div class="col-lg-4">
 
@@ -36,10 +36,17 @@
                                 } ?>
                             </div>
                             <div class="mb-3">
-                                <label for="crm" class="form-label">CRM</label>
-                                <input type="text" name="crm" class="form-control" id="crm" value="<?= set_value('crm') ?>" maxlength="8">
-                                <?php if(isset($validation) && $validation->getError('crm')){
-                                    echo('<div class="text-invalid">'. $validation->getError('crm') .'</div>');
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="text" name="cpf" class="form-control js-input-cpf" id="cpf" value="<?= set_value('cpf') ?>">
+                                <?php if(isset($validation) && $validation->getError('cpf')){
+                                    echo('<div class="text-invalid">'. $validation->getError('cpf') .'</div>');
+                                } ?>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="text" name="email" class="form-control" id="email" value="<?= set_value('email') ?>">
+                                <?php if(isset($validation) && $validation->getError('email')){
+                                    echo('<div class="text-invalid">'. $validation->getError('email') .'</div>');
                                 } ?>
                             </div>
                             <div class="mb-3">
@@ -47,20 +54,6 @@
                                 <input type="text" name="telefone" class="form-control" id="telefone" value="<?= set_value('telefone') ?>">
                                 <?php if(isset($validation) && $validation->getError('telefone')){
                                     echo('<div class="text-invalid">'. $validation->getError('telefone') .'</div>');
-                                } ?>
-                            </div>
-                            <div class="mb-3">
-                                <label for="especialidade_id" class="form-label">Especialidade</label>
-                                <select name="especialidade_id" class="form-select" id="especialidade_id">
-                                    <option value="">- selecione</option>
-                                    <?php foreach ($especialidades as $esp):?>
-                                    <option value="<?= $esp['id'] ?>" <?php set_select('especialidade_id') ?>>
-                                        <?= $esp['nome'] ?>
-                                    </option>
-                                    <?php endforeach;?>
-                                </select>
-                                <?php if(isset($validation) && $validation->getError('especialidade_id')){
-                                    echo('<div class="text-invalid">'. $validation->getError('especialidade_id') .'</div>');
                                 } ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Cadastrar</button>

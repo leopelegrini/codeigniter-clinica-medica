@@ -35,7 +35,9 @@
 
 <?= $this->renderSection('content') ?>
 
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
 <script type="text/javascript" src="/js/accounting.min.js"></script>
 <script type="text/javascript" src="/js/currency.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>

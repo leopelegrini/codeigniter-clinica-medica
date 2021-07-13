@@ -1,5 +1,7 @@
 <?php $this->extend('commons/app'); ?>
 
+<?php $validation = session('validation'); ?>
+
 <?= $this->section('content') ?>
 
 	<div class="page-title">

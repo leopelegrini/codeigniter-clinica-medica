@@ -1,10 +1,12 @@
 <?php $this->extend('commons/app'); ?>
 
+<?php $validation = session('validation'); ?>
+
 <?= $this->section('content') ?>
 
 	<div class="page-title">
         <div class="container ms-auto">
-		    <h5>Editar especialidade - </h5>
+		    <h5>Editar especialidade - <?php echo $especialidade['nome'] ?></h5>
         </div>
     </div>
 
@@ -23,6 +25,9 @@
 
             <div class="panel">
                 <form action="/especialidades/<?php echo $especialidade['id'] ?>/atualizar" method="post">
+
+                    <input type="hidden" name="id" value="<?php echo $especialidade['id'] ?>">
+
                     <div class="form-row">
                         <div class="col-lg-4">
 

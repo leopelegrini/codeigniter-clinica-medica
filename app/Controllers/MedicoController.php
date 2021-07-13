@@ -17,7 +17,14 @@ class MedicoController extends BaseController
 	public function index()
 	{
 		return view('medicos/index', [
-			'medicos' => $this->model->orderBy('nome', 'asc')->findAll()
+			'medicos' => $this->model
+				->select([
+					'medico.*',
+					'especialidade.nome as especialidade_nome'
+				])
+				->join('especialidade', 'medico.especialidade_id = especialidade.id')
+				->orderBy('nome', 'asc')
+				->findAll()
 		]);
 	}
 
@@ -35,26 +42,26 @@ class MedicoController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'nome' => 'required|min_length[3]|max_length[20]',
-			'valor' => 'required|regex_match[/^\d{1,3}(.\d{3})*(\,\d{2})?$/]'
+			'nome' => 'required|min_length[3]|max_length[50]',
+			'crm' => 'required|exact_length[8]|is_unique[medico.crm]',
+			'telefone' => 'required|max_length[14]',
+			'especialidade_id' => 'required'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('medicos/create', [
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->insert([
-				'nome' => $this->request->getVar('nome'),
-				'valor' => realToDollar($this->request->getVar('valor'))
-			]);
+		$this->model->insert([
+			'nome' => $this->request->getVar('nome'),
+			'crm' => $this->request->getVar('crm'),
+			'telefone' => $this->request->getVar('telefone'),
+			'especialidade_id' => $this->request->getVar('especialidade_id')
+		]);
 
-			session()->setFlashdata('message', 'Médico cadastrada');
+		session()->setFlashdata('message', 'Médico cadastrado');
 
-			return redirect()->to('/medicos');
-		}
+		return redirect()->to('/medicos');
 	}
 
 	public function edit($id)
@@ -62,7 +69,8 @@ class MedicoController extends BaseController
 		helper(['form']);
 
 		echo view('/medicos/edit', [
-			'medico' => $this->model->where('id', $id)->first()
+			'medico' => $this->model->where('id', $id)->first(),
+			'especialidades' => (new Especialidade())->orderBy('nome', 'asc')->findAll()
 		]);
 	}
 
@@ -71,27 +79,26 @@ class MedicoController extends BaseController
 		helper(['form']);
 
 		$rules = [
-			'nome' => 'required|min_length[3]|max_length[20]',
-			'valor' => 'required|regex_match[/^\d{1,3}(.\d{3})*(\,\d{2})?$/]'
+			'nome' => 'required|min_length[3]|max_length[50]',
+			'crm' => 'required|exact_length[8]|is_unique[medico.crm,id,{id}]',
+			'telefone' => 'required|max_length[14]',
+			'especialidade_id' => 'required'
 		];
 
 		if( ! $this->validate($rules)){
-			echo view('medicos/edit', [
-				'medico' => $this->model->where('id', $id)->first(),
-				'validation' => $this->validator
-			]);
+			return redirect()->back()->withInput()->with('validation', $this->validator);
 		}
-		else {
 
-			$this->model->update($id, [
-				'nome' => $this->request->getVar('nome'),
-				'valor' => $this->request->getVar('valor')
-			]);
+		$this->model->update($id, [
+			'nome' => $this->request->getVar('nome'),
+			'crm' => $this->request->getVar('crm'),
+			'telefone' => $this->request->getVar('telefone'),
+			'especialidade_id' => $this->request->getVar('especialidade_id')
+		]);
 
-			session()->setFlashdata('message', 'Médico atualizada');
+		session()->setFlashdata('message', 'Médico atualizado');
 
-			return redirect()->to('/medicos');
-		}
+		return redirect()->to('/medicos');
 	}
 
 	public function destroy($id)

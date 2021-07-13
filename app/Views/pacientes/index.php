@@ -4,7 +4,7 @@
 
 	<div class="page-title">
 		<div class="container ms-auto">
-			<h5>Médicos</h5>
+			<h5>Pacientes</h5>
 		</div>
 	</div>
 
@@ -16,35 +16,35 @@
             <?php endif;?>
 
             <div class="mb-3">
-                <a href="/medicos/cadastrar" class="btn btn-primary">
+                <a href="/pacientes/cadastrar" class="btn btn-primary">
                     Cadastrar
                 </a>
             </div>
 
-            <?php if(count($medicos)): ?>
+            <?php if(count($pacientes)): ?>
             <table class="table table-bordered">
                 <thead>
                     <tr class="table-secondary">
                         <th>Nome</th>
-                        <th>CRM</th>
+                        <th>CPF</th>
+                        <th>E-mail</th>
                         <th>Telefone</th>
-                        <th>Especialidade</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($medicos as $medico):?>
+                    <?php foreach ($pacientes as $paciente):?>
                     <tr>
-                        <td><?= $medico['nome'] ?></td>
-                        <td><?= $medico['crm'] ?></td>
-                        <td><?= $medico['telefone'] ?></td>
-                        <td><?= $medico['especialidade_nome'] ?></td>
+                        <td><?= $paciente['nome'] ?></td>
+                        <td><?= $paciente['cpf'] ?></td>
+                        <td><?= $paciente['email'] ?></td>
+                        <td><?= $paciente['telefone'] ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/editar');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/pacientes/'. $paciente['id'] .'/editar');?>" class="btn btn-light btn-sm">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/excluir');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/pacientes/'. $paciente['id'] .'/excluir');?>" class="btn btn-light btn-sm">
                                     Excluir
                                 </a>
                             </div>
@@ -54,7 +54,7 @@
                 </tbody>
             </table>
             <?php else: ?>
-            <p>Nenhum médico cadastrado.</p>
+            <p>Nenhum paciente cadastrado.</p>
             <?php endif; ?>
 
 		</div>
