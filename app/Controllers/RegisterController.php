@@ -17,7 +17,7 @@ class RegisterController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('auth/register');
+		return view('auth/register');
 	}
 
 	public function store()

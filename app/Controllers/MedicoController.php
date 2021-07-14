@@ -32,7 +32,7 @@ class MedicoController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('medicos/create', [
+		return view('medicos/create', [
 			'especialidades' => (new Especialidade())->orderBy('nome', 'asc')->findAll()
 		]);
 	}
@@ -68,7 +68,7 @@ class MedicoController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('/medicos/edit', [
+		return view('/medicos/edit', [
 			'medico' => $this->model->where('id', $id)->first(),
 			'especialidades' => (new Especialidade())->orderBy('nome', 'asc')->findAll()
 		]);

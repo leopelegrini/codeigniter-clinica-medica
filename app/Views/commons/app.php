@@ -24,8 +24,8 @@
 				<li><a href="/especialidades" class="nav-link px-2">Especialidades</a></li>
 				<li><a href="/medicos" class="nav-link px-2">Médicos</a></li>
 				<li><a href="/pacientes" class="nav-link px-2">Pacientes</a></li>
-				<li><a href="/agenda" class="nav-link px-2">Consultas</a></li>
-				<li style="margin-left:1rem;">
+				<li><a href="/consultas" class="nav-link px-2">Consultas</a></li>
+				<li class="ms-2">
 					<a href="/logout" class="btn btn-outline-primary me-2">Sair</a>
 				</li>
 			</ul>

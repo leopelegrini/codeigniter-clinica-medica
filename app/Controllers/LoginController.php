@@ -8,7 +8,7 @@ class LoginController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('auth/login');
+		return view('auth/login');
 	}
 
 	public function auth()
@@ -31,13 +31,11 @@ class LoginController extends BaseController
 
 			if($verify_pass){
 
-				$ses_data = [
+				$session->set([
 					'login_id' => $usuario_cadastrado['id'],
 					'login_usuario' => $usuario_cadastrado['usuario'],
 					'logged_in' => TRUE
-				];
-
-				$session->set($ses_data);
+				]);
 
 				return redirect()->to('/home');
 			}

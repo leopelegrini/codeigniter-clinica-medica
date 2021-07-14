@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Usuario;
+use App\Services\UsuarioService;
 
 class UsuarioController extends BaseController
 {
@@ -15,8 +16,19 @@ class UsuarioController extends BaseController
 
 	public function index()
 	{
+		helper(['form']);
+
+		$builder = $this->model->orderBy('usuario', 'asc');
+
+		$nome = $this->request->getVar('nome');
+
+		if($nome){
+			$builder->like('usuario', $nome);
+		}
+
 		return view('usuarios/index', [
-			'usuarios' => $this->model->orderBy('usuario', 'asc')->findAll()
+			'usuarios' => $builder->findAll(),
+			'nome' => $nome
 		]);
 	}
 
@@ -24,7 +36,7 @@ class UsuarioController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('usuarios/create');
+		return view('usuarios/create');
 	}
 
 	public function store()
@@ -55,7 +67,7 @@ class UsuarioController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('/usuarios/edit', [
+		return view('/usuarios/edit', [
 			'usuario' => $this->model->where('id', $id)->first()
 		]);
 	}
@@ -86,9 +98,9 @@ class UsuarioController extends BaseController
 
 	public function destroy($id)
 	{
-		$this->model->delete($id);
+		$response = UsuarioService::delete($id);
 
-		session()->setFlashdata('message', 'Usuário excluído');
+		session()->setFlashdata('message', $response['message']);
 
 		return redirect()->to('/usuarios');
 	}

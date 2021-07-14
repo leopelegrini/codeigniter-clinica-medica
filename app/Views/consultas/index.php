@@ -4,7 +4,7 @@
 
 	<div class="page-title">
 		<div class="container ms-auto">
-			<h5>Usuários</h5>
+			<h5>Consultas</h5>
 		</div>
 	</div>
 
@@ -18,38 +18,45 @@
             <div class="mb-3">
 				<div class="row">
 					<div class="col-md-6">
-						<a href="/usuarios/cadastrar" class="btn btn-primary">
+						<a href="/consultas/cadastrar" class="btn btn-primary">
 							Cadastrar
 						</a>
 					</div>
 					<div class="col-md-6">
-						<form action="/usuarios" method="get">
+                        <?php
+                        /*
+						<form action="/consultas" method="get">
 							<div class="d-flex">
                                 <input type="text" name="nome" class="form-control" value="<?= set_value('nome', $nome) ?>" placeholder="pesquisar...">
 								<button type="submit" class="btn btn-primary ms-2">Pesquisar</button>
 							</div>
 						</form>
+                        */
+                        ?>
 					</div>
 				</div>
 			</div>
 
+            <?php if(count($consultas)): ?>
             <table class="table table-bordered">
                 <thead>
                     <tr class="table-secondary">
-                        <th>Login</th>
+                        <th>Nome</th>
+                        <th class="text-end">Valor (R$)</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($usuarios as $usuario):?>
+                    <?php foreach ($consultas as $c):?>
                     <tr>
-                        <td><?= $usuario['usuario'] ?></td>
+                        <td><?= $esp['nome'] ?></td>
+                        <td class="text-end"><?= dollarToReal($esp['valor']) ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/usuarios/'. $usuario['id'] .'/editar');?>" class="text-decoration-none me-2">
+                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/editar');?>" class="text-decoration-none me-2">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/usuarios/'. $usuario['id'] .'/excluir');?>" class="text-decoration-none">
+                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/excluir');?>" class="text-decoration-none">
                                     Excluir
                                 </a>
                             </div>
@@ -58,6 +65,9 @@
                     <?php endforeach;?>
                 </tbody>
             </table>
+            <?php else: ?>
+            <p>Nenhuma consulta encontrada.</p>
+            <?php endif; ?>
 
 		</div>
 	</div>

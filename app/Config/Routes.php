@@ -30,10 +30,6 @@ $routes->setAutoRoute(false);
  * --------------------------------------------------------------------
  */
 
-
-$routes->get('/', 'HomeController::index', ['filter' => 'auth']);
-$routes->get('/home', 'HomeController::index', ['filter' => 'auth']);
-
 $routes->get('/login', 'LoginController::index');
 $routes->post('/auth', 'LoginController::auth');
 $routes->get('/logout', 'LoginController::logout');
@@ -41,33 +37,46 @@ $routes->get('/logout', 'LoginController::logout');
 $routes->get('/criar-conta', 'RegisterController::index');
 $routes->post('/criar-conta', 'RegisterController::store');
 
-$routes->get('/usuarios', 'UsuarioController::index', ['filter' => 'auth']);
-$routes->get('/usuarios/cadastrar', 'UsuarioController::create', ['filter' => 'auth']);
-$routes->post('/usuarios/salvar', 'UsuarioController::store', ['filter' => 'auth']);
-$routes->get('/usuarios/(:num)/editar', 'UsuarioController::edit/$1', ['filter' => 'auth']);
-$routes->post('/usuarios/(:num)/atualizar', 'UsuarioController::update/$1', ['filter' => 'auth']);
-$routes->get('/usuarios/(:num)/excluir', 'UsuarioController::destroy/$1', ['filter' => 'auth']);
+$routes->group('', ['filter' => 'auth'], function($routes){
 
-$routes->get('/especialidades', 'EspecialidadeController::index', ['filter' => 'auth']);
-$routes->get('/especialidades/cadastrar', 'EspecialidadeController::create', ['filter' => 'auth']);
-$routes->post('/especialidades/salvar', 'EspecialidadeController::store', ['filter' => 'auth']);
-$routes->get('/especialidades/(:num)/editar', 'EspecialidadeController::edit/$1', ['filter' => 'auth']);
-$routes->post('/especialidades/(:num)/atualizar', 'EspecialidadeController::update/$1', ['filter' => 'auth']);
-$routes->get('/especialidades/(:num)/excluir', 'EspecialidadeController::destroy/$1', ['filter' => 'auth']);
+	$routes->get('/', 'HomeController::index');
+	$routes->get('/home', 'HomeController::index');
 
-$routes->get('/medicos', 'MedicoController::index', ['filter' => 'auth']);
-$routes->get('/medicos/cadastrar', 'MedicoController::create', ['filter' => 'auth']);
-$routes->post('/medicos/salvar', 'MedicoController::store', ['filter' => 'auth']);
-$routes->get('/medicos/(:num)/editar', 'MedicoController::edit/$1', ['filter' => 'auth']);
-$routes->post('/medicos/(:num)/atualizar', 'MedicoController::update/$1', ['filter' => 'auth']);
-$routes->get('/medicos/(:num)/excluir', 'MedicoController::destroy/$1', ['filter' => 'auth']);
+	$routes->get('/usuarios', 'UsuarioController::index');
+	$routes->get('/usuarios/cadastrar', 'UsuarioController::create');
+	$routes->post('/usuarios/salvar', 'UsuarioController::store');
+	$routes->get('/usuarios/(:num)/editar', 'UsuarioController::edit/$1');
+	$routes->post('/usuarios/(:num)/atualizar', 'UsuarioController::update/$1');
+	$routes->get('/usuarios/(:num)/excluir', 'UsuarioController::destroy/$1');
+	
+	$routes->get('/especialidades', 'EspecialidadeController::index');
+	$routes->get('/especialidades/cadastrar', 'EspecialidadeController::create');
+	$routes->post('/especialidades/salvar', 'EspecialidadeController::store');
+	$routes->get('/especialidades/(:num)/editar', 'EspecialidadeController::edit/$1');
+	$routes->post('/especialidades/(:num)/atualizar', 'EspecialidadeController::update/$1');
+	$routes->get('/especialidades/(:num)/excluir', 'EspecialidadeController::destroy/$1');
+	
+	$routes->get('/medicos', 'MedicoController::index');
+	$routes->get('/medicos/cadastrar', 'MedicoController::create');
+	$routes->post('/medicos/salvar', 'MedicoController::store');
+	$routes->get('/medicos/(:num)/editar', 'MedicoController::edit/$1');
+	$routes->post('/medicos/(:num)/atualizar', 'MedicoController::update/$1');
+	$routes->get('/medicos/(:num)/excluir', 'MedicoController::destroy/$1');
+	
+	$routes->get('/pacientes', 'PacienteController::index');
+	$routes->get('/pacientes/cadastrar', 'PacienteController::create');
+	$routes->post('/pacientes/salvar', 'PacienteController::store');
+	$routes->get('/pacientes/(:num)/editar', 'PacienteController::edit/$1');
+	$routes->post('/pacientes/(:num)/atualizar', 'PacienteController::update/$1');
+	$routes->get('/pacientes/(:num)/excluir', 'PacienteController::destroy/$1');
 
-$routes->get('/pacientes', 'PacienteController::index', ['filter' => 'auth']);
-$routes->get('/pacientes/cadastrar', 'PacienteController::create', ['filter' => 'auth']);
-$routes->post('/pacientes/salvar', 'PacienteController::store', ['filter' => 'auth']);
-$routes->get('/pacientes/(:num)/editar', 'PacienteController::edit/$1', ['filter' => 'auth']);
-$routes->post('/pacientes/(:num)/atualizar', 'PacienteController::update/$1', ['filter' => 'auth']);
-$routes->get('/pacientes/(:num)/excluir', 'PacienteController::destroy/$1', ['filter' => 'auth']);
+	$routes->get('/consultas', 'ConsultaController::index');
+	$routes->get('/consultas/cadastrar', 'ConsultaController::create');
+	$routes->post('/consultas/salvar', 'ConsultaController::store');
+	$routes->get('/consultas/(:num)/editar', 'ConsultaController::edit/$1');
+	$routes->post('/consultas/(:num)/atualizar', 'ConsultaController::update/$1');
+	$routes->get('/consultas/(:num)/excluir', 'ConsultaController::destroy/$1');
+});
 
 /*
  * --------------------------------------------------------------------

@@ -35,7 +35,7 @@ class PacienteController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('pacientes/create');
+		return view('pacientes/create');
 	}
 
 	public function store()
@@ -69,7 +69,7 @@ class PacienteController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('/pacientes/edit', [
+		return view('/pacientes/edit', [
 			'paciente' => $this->model->where('id', $id)->first()
 		]);
 	}

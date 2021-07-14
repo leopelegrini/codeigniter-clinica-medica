@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Especialidade;
-use App\Models\Medico;
+use App\Services\EspecialidadeService;
 
 class EspecialidadeController extends BaseController
 {
@@ -36,7 +36,7 @@ class EspecialidadeController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('especialidades/create');
+		return view('especialidades/create');
 	}
 
 	public function store()
@@ -66,7 +66,7 @@ class EspecialidadeController extends BaseController
 	{
 		helper(['form']);
 
-		echo view('/especialidades/edit', [
+		return view('/especialidades/edit', [
 			'especialidade' => $this->model->where('id', $id)->first()
 		]);
 	}
@@ -96,12 +96,9 @@ class EspecialidadeController extends BaseController
 
 	public function destroy($id)
 	{
-		$medico = (new Medico())->where('especialidade_id', $id)->first();
-		if($medico)
+		$response = EspecialidadeService::delete($id);
 
-		$this->model->delete($id);
-
-		session()->setFlashdata('message', 'Especialidade excluída');
+		session()->setFlashdata('message', $response['message']);
 
 		return redirect()->to('/especialidades');
 	}
