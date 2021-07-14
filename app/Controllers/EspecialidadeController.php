@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Especialidade;
+use App\Models\Medico;
 
 class EspecialidadeController extends BaseController
 {
@@ -15,8 +16,19 @@ class EspecialidadeController extends BaseController
 
 	public function index()
 	{
+		helper(['form']);
+
+		$builder = $this->model->orderBy('nome', 'asc');
+
+		$nome = $this->request->getVar('nome');
+
+		if($nome){
+			$builder->like('nome', $nome);
+		}
+
 		return view('especialidades/index', [
-			'especialidades' => $this->model->orderBy('nome', 'asc')->findAll()
+			'especialidades' => $builder->findAll(),
+			'nome' => $nome
 		]);
 	}
 
@@ -84,6 +96,9 @@ class EspecialidadeController extends BaseController
 
 	public function destroy($id)
 	{
+		$medico = (new Medico())->where('especialidade_id', $id)->first();
+		if($medico)
+
 		$this->model->delete($id);
 
 		session()->setFlashdata('message', 'Especialidade excluída');

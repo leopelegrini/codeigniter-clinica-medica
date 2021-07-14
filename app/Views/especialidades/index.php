@@ -16,17 +16,29 @@
             <?php endif;?>
 
             <div class="mb-3">
-                <a href="/especialidades/cadastrar" class="btn btn-primary">
-                    Cadastrar
-                </a>
-            </div>
+				<div class="row">
+					<div class="col-md-6">
+						<a href="/especialidades/cadastrar" class="btn btn-primary">
+							Cadastrar
+						</a>
+					</div>
+					<div class="col-md-6">
+						<form action="/especialidades" method="get">
+							<div class="d-flex">
+                                <input type="text" name="nome" class="form-control" value="<?= set_value('nome', $nome) ?>" placeholder="pesquisar...">
+								<button type="submit" class="btn btn-primary ms-2">Pesquisar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 
             <?php if(count($especialidades)): ?>
             <table class="table table-bordered">
                 <thead>
                     <tr class="table-secondary">
                         <th>Nome</th>
-                        <th class="text-end">Valor</th>
+                        <th class="text-end">Valor (R$)</th>
                         <th style="width:80px"></th>
                     </tr>
                 </thead>
@@ -37,10 +49,10 @@
                         <td class="text-end"><?= dollarToReal($esp['valor']) ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/editar');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/editar');?>" class="text-decoration-none me-2">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/excluir');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/excluir');?>" class="text-decoration-none">
                                     Excluir
                                 </a>
                             </div>

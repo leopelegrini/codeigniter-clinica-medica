@@ -15,8 +15,19 @@ class PacienteController extends BaseController
 
 	public function index()
 	{
+		helper(['form']);
+
+		$builder = $this->model->orderBy('nome', 'asc');
+
+		$nome = $this->request->getVar('nome');
+
+		if($nome){
+			$builder->like('nome', $nome);
+		}
+
 		return view('pacientes/index', [
-			'pacientes' => $this->model->orderBy('nome', 'asc')->findAll()
+			'pacientes' => $builder->findAll(),
+			'nome' => $nome
 		]);
 	}
 
@@ -92,6 +103,8 @@ class PacienteController extends BaseController
 
 	public function destroy($id)
 	{
+		// $paciente = $this->model->where('id', $id)->first();
+
 		$this->model->delete($id);
 
 		session()->setFlashdata('message', 'Paciente excluído');

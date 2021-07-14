@@ -41,10 +41,10 @@
                         <td><?= $medico['especialidade_nome'] ?></td>
                         <td>
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/editar');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/editar');?>" class="text-decoration-none me-2">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/excluir');?>" class="btn btn-light btn-sm">
+                                <a href="<?php echo base_url('/medicos/'. $medico['id'] .'/excluir');?>" class="text-decoration-none">
                                     Excluir
                                 </a>
                             </div>
