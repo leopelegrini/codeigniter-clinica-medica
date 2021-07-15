@@ -41,7 +41,7 @@
 						<th>CPF</th>
 						<th>E-mail</th>
 						<th>Telefone</th>
-						<th style="width:80px"></th>
+						<th class="collapsed"></th>
 					</tr>
 				</thead>
 				<tbody>

@@ -3,6 +3,8 @@
 namespace Config;
 
 use App\Rules\CpfRule;
+use App\Rules\CrmRule;
+use App\Rules\HorarioConsultaRule;
 use CodeIgniter\Validation\CreditCardRules;
 use CodeIgniter\Validation\FileRules;
 use CodeIgniter\Validation\FormatRules;
@@ -25,7 +27,9 @@ class Validation
 		FormatRules::class,
 		FileRules::class,
 		CreditCardRules::class,
-		CpfRule::class
+		CpfRule::class,
+		HorarioConsultaRule::class,
+		CrmRule::class
 	];
 
 	/**

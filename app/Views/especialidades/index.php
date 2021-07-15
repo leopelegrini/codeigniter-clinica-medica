@@ -39,7 +39,7 @@
                     <tr class="table-secondary">
                         <th>Nome</th>
                         <th class="text-end">Valor (R$)</th>
-                        <th style="width:80px"></th>
+                        <th class="collapsed"></th>
                     </tr>
                 </thead>
                 <tbody>

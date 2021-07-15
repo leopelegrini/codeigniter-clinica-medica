@@ -37,7 +37,7 @@
                 <thead>
                     <tr class="table-secondary">
                         <th>Login</th>
-                        <th style="width:80px"></th>
+                        <th class="collapsed"></th>
                     </tr>
                 </thead>
                 <tbody>

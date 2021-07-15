@@ -40,7 +40,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="crm" class="form-label">CRM</label>
-                                <input type="text" name="crm" class="form-control" id="crm" value="<?= set_value('crm', $medico['crm']) ?>" maxlength="8">
+                                <input type="text" name="crm" class="form-control js-input-crm" id="crm" value="<?= set_value('crm', $medico['crm']) ?>" maxlength="8">
                                 <?php if(isset($validation) && $validation->getError('crm')){
                                     echo('<div class="text-invalid">'. $validation->getError('crm') .'</div>');
                                 } ?>

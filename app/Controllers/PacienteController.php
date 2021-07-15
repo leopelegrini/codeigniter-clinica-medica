@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Paciente;
+use App\Services\PacienteService;
 
 class PacienteController extends BaseController
 {
@@ -103,11 +104,9 @@ class PacienteController extends BaseController
 
 	public function destroy($id)
 	{
-		// $paciente = $this->model->where('id', $id)->first();
+		$response = PacienteService::delete($id);
 
-		$this->model->delete($id);
-
-		session()->setFlashdata('message', 'Paciente excluído');
+		session()->setFlashdata('message', $response['message']);
 
 		return redirect()->to('/pacientes');
 	}

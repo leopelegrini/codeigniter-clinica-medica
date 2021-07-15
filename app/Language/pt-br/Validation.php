@@ -40,7 +40,7 @@ return [
 	'valid_emails'          => 'O campo {field} deve conter todos os endereços de e-mails válidos.',
 	'valid_ip'              => 'O campo {field} deve conter um IP válido.',
 	'valid_url'             => 'O campo {field} deve conter uma URL válida.',
-	'valid_date'            => 'O campo {field} deve conter uma data válida.',
+	'valid_date'            => 'O campo {field} deve conter uma data / hora válida.',
 
 	// Credit Cards
 	'valid_cc_num'          => '{field} não parece ser um número de cartão de crédito válido.',
@@ -53,5 +53,8 @@ return [
 	'ext_in'                => '{field} não tem uma extensão de arquivo válida.',
 	'max_dims'              => '{field} não é uma imagem, ou ela é muito larga ou muito grande.',
 
-	'cpf'					=> 'CPF inválido'
+	'cpf'					=> 'CPF inválido',
+	'crm'					=> 'CRM inválido',
+	'horario_consulta_medico'	=> 'Já existe uma consulta para este médico neste horário',
+	'horario_consulta_paciente'	=> 'Já existe uma consulta para este paciente neste horário',
 ];

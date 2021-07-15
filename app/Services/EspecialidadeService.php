@@ -25,4 +25,14 @@ class EspecialidadeService
 			'message' => 'Especialidade excluída com sucesso.'
 		];
 	}
+
+	public static function getValorEspecialidadeByMedicoId($medico_id)
+	{
+		$especialidade = (new Medico())->select('especialidade.*')
+			->where('medico.id', $medico_id)
+			->join('especialidade', 'medico.especialidade_id = especialidade.id')
+			->first();
+
+		return $especialidade['valor'];
+	}
 }

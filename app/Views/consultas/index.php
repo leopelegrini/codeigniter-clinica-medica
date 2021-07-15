@@ -23,40 +23,42 @@
 						</a>
 					</div>
 					<div class="col-md-6">
-                        <?php
-                        /*
 						<form action="/consultas" method="get">
 							<div class="d-flex">
-                                <input type="text" name="nome" class="form-control" value="<?= set_value('nome', $nome) ?>" placeholder="pesquisar...">
+                                <input type="text" name="termo" class="form-control" value="<?= set_value('termo', $termo) ?>" placeholder="pesquisar...">
 								<button type="submit" class="btn btn-primary ms-2">Pesquisar</button>
 							</div>
 						</form>
-                        */
-                        ?>
 					</div>
 				</div>
 			</div>
 
             <?php if(count($consultas)): ?>
-            <table class="table table-bordered">
+            <table class="table table-bordered bg-white">
                 <thead>
                     <tr class="table-secondary">
-                        <th>Nome</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Médico</th>
                         <th class="text-end">Valor (R$)</th>
-                        <th style="width:80px"></th>
+                        <th class="collapsed"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($consultas as $c):?>
                     <tr>
-                        <td><?= $esp['nome'] ?></td>
-                        <td class="text-end"><?= dollarToReal($esp['valor']) ?></td>
-                        <td>
+                        <td><?= $c['data'] ?></td>
+                        <td><?= $c['hora'] ?></td>
+                        <td><?= $c['paciente'] ?></td>
+                        <td><?= $c['medico'] ?></td>
+                        <td class="text-end"><?= dollarToReal($c['valor']) ?></td>
+                        <td class="collapsed">
                             <div class="d-flex">
-                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/editar');?>" class="text-decoration-none me-2">
+                                <a href="<?php echo base_url('/consultas/'. $c['id'] .'/editar');?>" class="text-decoration-none me-2">
                                     Editar
                                 </a>
-                                <a href="<?php echo base_url('/especialidades/'. $esp['id'] .'/excluir');?>" class="text-decoration-none">
+                                <a href="<?php echo base_url('/consultas/'. $c['id'] .'/excluir');?>" class="text-decoration-none">
                                     Excluir
                                 </a>
                             </div>

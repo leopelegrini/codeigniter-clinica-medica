@@ -16,10 +16,22 @@
             <?php endif;?>
 
             <div class="mb-3">
-                <a href="/medicos/cadastrar" class="btn btn-primary">
-                    Cadastrar
-                </a>
-            </div>
+				<div class="row">
+					<div class="col-md-6">
+						<a href="/medicos/cadastrar" class="btn btn-primary">
+							Cadastrar
+						</a>
+					</div>
+					<div class="col-md-6">
+						<form action="/medicos" method="get">
+							<div class="d-flex">
+                                <input type="text" name="termo" class="form-control" value="<?= set_value('termo', $termo) ?>" placeholder="pesquisar...">
+								<button type="submit" class="btn btn-primary ms-2">Pesquisar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 
             <?php if(count($medicos)): ?>
             <table class="table table-bordered">
@@ -29,7 +41,7 @@
                         <th>CRM</th>
                         <th>Telefone</th>
                         <th>Especialidade</th>
-                        <th style="width:80px"></th>
+                        <th class="collapsed"></th>
                     </tr>
                 </thead>
                 <tbody>

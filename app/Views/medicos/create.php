@@ -37,7 +37,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="crm" class="form-label">CRM</label>
-                                <input type="text" name="crm" class="form-control" id="crm" value="<?= set_value('crm') ?>" maxlength="8">
+                                <input type="text" name="crm" class="form-control js-input-crm" id="crm" value="<?= set_value('crm') ?>" maxlength="8">
                                 <?php if(isset($validation) && $validation->getError('crm')){
                                     echo('<div class="text-invalid">'. $validation->getError('crm') .'</div>');
                                 } ?>
@@ -54,7 +54,7 @@
                                 <select name="especialidade_id" class="form-select" id="especialidade_id">
                                     <option value="">- selecione</option>
                                     <?php foreach ($especialidades as $esp):?>
-                                    <option value="<?= $esp['id'] ?>" <?php set_select('especialidade_id') ?>>
+                                    <option value="<?= $esp['id'] ?>" <?= set_select('especialidade_id', $esp['id'], $esp['id'] == old('especialidade_id') ? true : false) ?>>
                                         <?= $esp['nome'] ?>
                                     </option>
                                     <?php endforeach;?>

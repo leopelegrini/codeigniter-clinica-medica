@@ -6,7 +6,7 @@
 
 	<div class="page-title">
 		<div class="container ms-auto">
-			<h5>Cadastrar consulta</h5>
+			<h5>Editar consulta</h5>
 		</div>
 	</div>
 
@@ -24,7 +24,10 @@
 			<?php endif;?>
 
 			<div class="panel">
-				<form action="/consultas/salvar" method="post">
+                <form action="/consultas/<?php echo $consulta['id'] ?>/atualizar" method="post">
+
+                    <input type="hidden" name="id" value="<?php echo $consulta['id'] ?>">
+
 					<div class="form-row">
 						<div class="col-lg-6">
 
@@ -33,7 +36,7 @@
 								<select name="paciente_id" class="form-select" id="paciente_id">
 									<option value="">- selecione</option>
 									<?php foreach ($pacientes as $p):?>
-                                    <option value="<?= $p['id'] ?>" <?= set_select('paciente_id', $p['id'], $p['id'] == old('paciente_id') ? true : false) ?>>
+                                    <option value="<?= $p['id'] ?>" <?= set_select('paciente_id', $p['id'], $p['id'] == $consulta['paciente_id'] ? true : false) ?>>
 										<?= $p['nome'] ?>
 									</option>
 									<?php endforeach;?>
@@ -48,7 +51,7 @@
 								<select name="medico_id" class="form-select" id="medico_id">
 									<option value="">- selecione</option>
 									<?php foreach ($medicos as $m):?>
-                                    <option value="<?= $m['id'] ?>" <?= set_select('medico_id', $m['id'], $m['id'] == old('medico_id') ? true : false) ?>>
+                                    <option value="<?= $m['id'] ?>" <?= set_select('medico_id', $m['id'], $m['id'] == $consulta['medico_id'] ? true : false) ?>>
 										<?= $m['nome'] ?>
 									</option>
 									<?php endforeach;?>
@@ -62,7 +65,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="data" class="form-label">Data</label>
-                                        <input type="date" name="data" class="form-control" id="data" value="<?= set_value('data', $data_padrao) ?>">
+                                        <input type="date" name="data" class="form-control" id="data" value="<?= set_value('data', $consulta['data']) ?>">
                                         <?php if(isset($validation) && $validation->getError('data')){
                                             echo('<div class="text-invalid">'. $validation->getError('data') .'</div>');
                                         } ?>
@@ -71,7 +74,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="hora" class="form-label">Hora</label>
-                                        <input type="time" name="hora" class="form-control js-input-time" id="hora" value="<?= set_value('hora', $hora_padrao) ?>">
+                                        <input type="time" name="hora" class="form-control js-input-time" id="hora" value="<?= set_value('hora', $consulta['hora']) ?>">
                                         <?php if(isset($validation) && $validation->getError('hora')){
                                             echo('<div class="text-invalid">'. $validation->getError('hora') .'</div>');
                                         } ?>
@@ -80,7 +83,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="valor" class="form-label">Valor <small class="fst-italic text-muted">(opcional)</small></label>
-                                        <input type="text" name="valor" class="form-control js-input-decimal" id="valor" value="<?= set_value('valor') ?>">
+                                        <input type="text" name="valor" class="form-control js-input-decimal" id="valor" value="<?= set_value('valor', dollarToReal($consulta['valor'])) ?>">
                                         <?php if(isset($validation) && $validation->getError('valor')){
                                             echo('<div class="text-invalid">'. $validation->getError('valor') .'</div>');
                                         } ?>

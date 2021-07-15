@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Especialidade;
 use App\Models\Medico;
+use App\Services\MedicoService;
 
 class MedicoController extends BaseController
 {
@@ -16,15 +17,28 @@ class MedicoController extends BaseController
 
 	public function index()
 	{
+		helper(['form']);
+
+		$builder = $this->model
+			->select([
+				'medico.*',
+				'especialidade.nome as especialidade_nome'
+			])
+			->join('especialidade', 'medico.especialidade_id = especialidade.id')
+			->orderBy('nome', 'asc');
+
+		$termo = $this->request->getVar('termo');
+
+		if($termo){
+			$builder->groupStart()
+				->like('medico.nome', $termo)
+				->orLike('especialidade.nome', $termo)
+				->groupEnd();
+		}
+
 		return view('medicos/index', [
-			'medicos' => $this->model
-				->select([
-					'medico.*',
-					'especialidade.nome as especialidade_nome'
-				])
-				->join('especialidade', 'medico.especialidade_id = especialidade.id')
-				->orderBy('nome', 'asc')
-				->findAll()
+			'medicos' => $builder->findAll(),
+			'termo' => $termo
 		]);
 	}
 
@@ -43,7 +57,7 @@ class MedicoController extends BaseController
 
 		$rules = [
 			'nome' => 'required|min_length[3]|max_length[50]',
-			'crm' => 'required|exact_length[8]|is_unique[medico.crm]',
+			'crm' => 'required|crm|is_unique[medico.crm]',
 			'telefone' => 'required|max_length[14]',
 			'especialidade_id' => 'required'
 		];
@@ -80,7 +94,7 @@ class MedicoController extends BaseController
 
 		$rules = [
 			'nome' => 'required|min_length[3]|max_length[50]',
-			'crm' => 'required|exact_length[8]|is_unique[medico.crm,id,{id}]',
+			'crm' => 'required|crm|is_unique[medico.crm,id,{id}]',
 			'telefone' => 'required|max_length[14]',
 			'especialidade_id' => 'required'
 		];
@@ -103,9 +117,9 @@ class MedicoController extends BaseController
 
 	public function destroy($id)
 	{
-		$this->model->delete($id);
+		$response = MedicoService::delete($id);
 
-		session()->setFlashdata('message', 'Médico excluído');
+		session()->setFlashdata('message', $response['message']);
 
 		return redirect()->to('/medicos');
 	}

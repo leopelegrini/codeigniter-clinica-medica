@@ -6,4 +6,8 @@ $(function(){
 		placeholder: "___.___.___-__"
 	});
 
+    $('.js-input-crm').mask('00000/AAA', {
+		placeholder: "_____/__"
+	});
+
 });

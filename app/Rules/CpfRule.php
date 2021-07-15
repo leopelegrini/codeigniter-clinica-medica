@@ -4,7 +4,7 @@ namespace App\Rules;
 
 class CpfRule
 {
-	public function cpf($value)
+	public function cpf(string $value) : bool
 	{
 		$c = preg_replace('/[^\d]/', '', $value);
 

@@ -13,7 +13,7 @@ class RegisterController extends BaseController
 		$this->model = new Usuario();
 	}
 
-	public function index()
+	public function create()
 	{
 		helper(['form']);
 

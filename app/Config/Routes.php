@@ -34,8 +34,8 @@ $routes->get('/login', 'LoginController::index');
 $routes->post('/auth', 'LoginController::auth');
 $routes->get('/logout', 'LoginController::logout');
 
-$routes->get('/criar-conta', 'RegisterController::index');
-$routes->post('/criar-conta', 'RegisterController::store');
+$routes->get('/criar-conta', 'RegisterController::create');
+$routes->post('/criar-conta/salvar', 'RegisterController::store');
 
 $routes->group('', ['filter' => 'auth'], function($routes){
 
